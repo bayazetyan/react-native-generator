@@ -1,0 +1,24 @@
+{
+  "name": "rn-generator",
+  "version": "0.0.1",
+  "description": "This is the file generator for react-native ( Redux ) application",
+  "main": "./bundle.js",
+  "scripts": {
+    "watch": "babel src -o bundle.js --watch",
+    "build": "babel src -o bundle.js",
+    "generate": "plop --plopfile bundle.js",
+    "generator": "npm run generate",
+    "dev": "node app/console/index.js"
+  },
+  "repository": "git@github.com:bayazetyan/react-native-generator.git",
+  "author": "Artash Bayazetyan <bayazetyan@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "plop": "^1.9.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2105": "^0.0.0"
+  }
+}
