@@ -1,0 +1,63 @@
+{{#if flow}}// @flow
+
+{{/if}}
+import React, { {{extendedComponent}} } from 'react';
+{{#checkValueInArray properties checkValue='propTypes' }}
+import PropTypes from 'prop-types';
+{{/checkValueInArray}}
+import {
+    View,
+    Text,
+    StyleSheet,
+} from 'react-native';
+
+{{#if flow}}
+type I{{ properCase name }}Props = {
+
+}
+
+type I{{ properCase name }}State = {
+
+}
+
+{{/if}}
+export default class {{ properCase name }} extends {{extendedComponent}}{{#if flow}}<I{{ properCase name }}Props, I{{ properCase name }}State>{{/if}} {
+{{#if flow}}
+    state: I{{ properCase name }}State
+
+{{/if}}
+{{#checkValueInArray properties checkValue='constructor' }}
+    constructor(props{{#if flow}}: I{{ properCase name }}Props {{/if}}) {
+        super(props);
+
+        this.state = {};
+    }
+
+{{/checkValueInArray}}
+{{#checkValueInArray properties checkValue='propTypes' }}
+    static propTypes = {
+
+    };
+
+{{/checkValueInArray}}
+{{#checkValueInArray properties checkValue='defaultProps' }}
+    static defaultProps = {
+
+    };
+
+{{/checkValueInArray}}
+{{printLifeCycles properties }}
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text>{{ properCase name }}</Text>
+            </View>
+        )
+    }
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    }
+})
