@@ -1,16 +1,14 @@
-'use strict';
+const fs = require('fs');
+const config = require('./../config/index.js');
+const nameCheck = require('./nameCheck');
 
-var fs = require('fs');
-var config = require('./../config/index.js');
-var nameCheck = require('./nameCheck');
-
-var componentNameCheck = function componentNameCheck(component, type) {
-  var dirs = [];
-  if (!type) {
+const componentNameCheck = (component, type) => {
+  let dirs = [];
+  if(!type) {
     dirs = [config.absPaths.componentsDir, config.absPaths.containersDir];
-  } else if (type === 1) {
+  } else if(type === 1) {
     dirs = [config.absPaths.componentsDir];
-  } else if (type === 2) {
+  } else if(type === 2) {
     dirs = [config.absPaths.containersDir];
   }
 

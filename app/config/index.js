@@ -1,64 +1,53 @@
-"use strict";
+import fs from "fs";
+import path from "path";
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _fs = require("fs");
-
-var _fs2 = _interopRequireDefault(_fs);
-
-var _path = require("path");
-
-var _path2 = _interopRequireDefault(_path);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var config = {};
+let config = {};
 
 try {
-    var packageJSON = require(_path2.default.resolve('package.json'));
+    const packageJSON = require(path.resolve('package.json'));
 
-    config = packageJSON && packageJSON.rnGenerator || {};
+    config = (packageJSON && packageJSON.rnGenerator) || {};
 } catch (err) {
-    console.log('rnGenerator config is not defined in package.json file');
+    console.log('rnGenerator config is not defined in package.json file')
 }
 
-var externalConfig = {};
-var templateNames = {};
+let externalConfig = {};
+let templateNames = {};
 
 try {
-    externalConfig = JSON.parse(_fs2.default.readFileSync(_path2.default.resolve('.rnGenerator'), 'utf8'));
+    externalConfig = JSON.parse(fs.readFileSync(path.resolve('.rnGenerator'), 'utf8'));
     templateNames = externalConfig.templateNames || {};
 } catch (err) {
     console.warn("Missing config file or it is not valid.");
 }
 
-var isDirExist = function isDirExist(filePath) {
+const isDirExist = (filePath) => {
     try {
-        return _fs2.default.statSync(filePath).isDirectory();
-    } catch (err) {
+        return fs.statSync(filePath).isDirectory();
+    } catch (err)  {
         return false;
     }
 };
 
-var prepareRelativePath = function prepareRelativePath(filePath) {
-    return filePath.replace(/[\\]/g, '/');
+const prepareRelativePath = (filePath) => {
+    return filePath.replace(/[\\]/g, '/')
 };
 
-var isFileExist = function isFileExist(filePath) {
+const isFileExist = (filePath) => {
     try {
-        return _fs2.default.statSync(filePath).isFile();
-    } catch (err) {
+        return fs.statSync(filePath).isFile();
+    } catch (err)  {
         return false;
     }
 };
 
-var functions = {
-    isDirExist: isDirExist,
-    isFileExist: isFileExist,
-    prepareRelativePath: prepareRelativePath
+const functions = {
+    isDirExist,
+    isFileExist,
+    prepareRelativePath
 };
 
-var defaultPaths = {
+const defaultPaths = {
     rootReducerPath: 'src/reducers/index.js',
     componentsDir: 'src/components',
     containerDir: 'src/containers',
@@ -66,18 +55,18 @@ var defaultPaths = {
     testRootDir: './__test__',
     rootFile: 'src/app',
     appFile: 'src/app',
-    templatePath: ''
+    templatePath: '',
 };
 
-var paths = _extends({}, defaultPaths, config.paths, externalConfig.paths);
+const paths = { ...defaultPaths, ...config.paths, ...externalConfig.paths };
 
-var getAbsPath = function getAbsPath(obj) {
-    var results = {};
+const getAbsPath = (obj) => {
+    const results = {};
 
-    for (var str in obj) {
-        results[str] = _path2.default.resolve(obj[str]);
+    for(const str in obj) {
+        results[str] = path.resolve(obj[str]);
 
-        if (obj[str].lastIndexOf('.js') !== obj[str].length - 3) {
+        if (obj[str].lastIndexOf('.js') !== obj[str].length - 3)  {
 
             results[str] += '/';
         }
@@ -85,4 +74,4 @@ var getAbsPath = function getAbsPath(obj) {
     return results;
 };
 
-module.exports = _extends({}, functions, paths, { absPaths: getAbsPath(paths), templateNames: templateNames });
+module.exports = { ...functions, ...paths, absPaths: getAbsPath(paths), templateNames };
