@@ -2,10 +2,13 @@
   "name": "rn-generator",
   "version": "0.1.1",
   "description": "This is the file generator for react-native ( Redux ) application",
-  "main": "./bundle.js",
+  "main": "./dist/console/index.js",
+  "bin": {
+    "generate": "generator-run"
+  },
   "scripts": {
+    "build": "babel app -d dist",
     "watch": "babel app -d dist --watch",
-    "generator:build": "babel app -d dist",
     "generate": "plop --plopfile dist/console/index.js",
     "generator:run": "yarn run generate"
   },
