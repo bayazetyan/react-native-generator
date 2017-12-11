@@ -17,7 +17,7 @@ const reactLifeCycles = [
 
 module.exports = (plop) => (
     {
-        description: 'Add component',
+        description: 'Create component',
         prompts: [
             {
                 type: 'input',
