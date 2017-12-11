@@ -3,5 +3,5 @@ import { addHelpers } from './../helpers';
 
 module.exports = (plop) => {
     addHelpers(plop);
-    plop.setGenerator('Create Component', componentGenerator(plop));
+    plop.setGenerator('Component', componentGenerator(plop));
 };
