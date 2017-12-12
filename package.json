@@ -1,6 +1,6 @@
 {
-  "name": "rn-generator",
-  "version": "0.1.2",
+  "name": "@bayazetyan/rn-generator",
+  "version": "0.1.3",
   "description": "This is the file generator for react-native ( Redux ) application",
   "main": "./dist/console/index.js",
   "bin": {
