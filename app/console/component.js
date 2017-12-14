@@ -24,7 +24,7 @@ module.exports = (plop) => (
                 name: 'name',
                 message: 'What is name of the component?',
                 default: 'Button',
-                validate: verifyName,
+                validate: (value) => verifyName(value, 'component')
             },
             {
                 type: 'confirm',
@@ -56,11 +56,12 @@ module.exports = (plop) => (
         ],
         actions: (data) => {
             const componentsDir = config.absPaths.componentsDir;
+            data.type = 'component';
 
             const actions = [{
                 type: 'add',
                 abortOnFail: true,
-                templateFile: getTemplatePath('es6class', 'component'),
+                templateFile: getTemplatePath('index', 'component'),
                 path: componentsDir + '{{properCase name}}/{{properCase name}}.js',
             },{
                 type: 'add',
@@ -71,7 +72,7 @@ module.exports = (plop) => (
 
             if(config.isFileExist(`${componentsDir}index.js`)) {
                 // Add component export to index.js in component root folder
-                actions.push(modifyExports(plop))
+                actions.push(modifyExports(plop, componentsDir))
             }else {
                 // Add container export to index.js in container root folder
                 actions.push({

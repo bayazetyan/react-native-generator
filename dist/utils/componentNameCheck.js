@@ -1,20 +1,32 @@
-'use strict';
+"use strict";
 
-var fs = require('fs');
-var config = require('./../config/index.js');
-var nameCheck = require('./nameCheck');
+var _fs = require("fs");
+
+var _fs2 = _interopRequireDefault(_fs);
+
+var _nameCheck = require("./nameCheck");
+
+var _index = require("./../config/index");
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var componentNameCheck = function componentNameCheck(component, type) {
-  var dirs = [];
-  if (!type) {
-    dirs = [config.absPaths.componentsDir, config.absPaths.containersDir];
-  } else if (type === 1) {
-    dirs = [config.absPaths.componentsDir];
-  } else if (type === 2) {
-    dirs = [config.absPaths.containersDir];
-  }
+    var dirs = [];
 
-  return nameCheck(component, dirs);
+    switch (type) {
+        case 'component':
+            dirs = [_index2.default.absPaths.componentsDir];
+            break;
+        case 'container':
+            dirs = [_index2.default.absPaths.containersDir];
+            break;
+        default:
+            dirs = [_index2.default.absPaths.componentsDir, _index2.default.absPaths.containersDir];
+    }
+
+    return (0, _nameCheck.nameCheck)(component, dirs);
 };
 
 module.exports = componentNameCheck;

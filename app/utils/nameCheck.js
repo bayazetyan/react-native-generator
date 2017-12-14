@@ -1,9 +1,9 @@
 import config from "./../config";
 import fs from "fs";
 
-const getFilesNames = (dirs) => {
+export const getFilesNames = (dirs) => {
     let allFiles = [];
-    
+
     dirs.forEach((dir) => {
         const files = config.isDirExist(dir) ? fs.readdirSync(dir) : [];
         
@@ -13,7 +13,8 @@ const getFilesNames = (dirs) => {
     return allFiles;
 };
 
-const nameCheckDir = (component, dirs) => {
+export const nameCheck = (component, dirs) => {
+
     const components = getFilesNames(dirs);
 
     const existDirs = components.slice(0, -1);
@@ -22,9 +23,7 @@ const nameCheckDir = (component, dirs) => {
         console.log('\n  Existent directories: ', '\x1b[36m ', existDirs ,' \x1b[0m', '\n');
     }
 
-    const regExp = new RegExp(`^${component}$`, 'i');
+    let regExp = new RegExp(`^${component}$`, 'i');
 
     return components.find((item) => item.match(regExp))
 };
-
-module.exports = nameCheckDir;

@@ -9,8 +9,18 @@ const templatesPath = {
     component: {
         test: 'test.js.hbs',
         export: 'export.js.hbs',
-        es6class: 'es6class.js.hbs',
+        index: 'index.js.hbs',
         component_export: 'component_export.js.hbs',
+    },
+    container: {
+        index: 'index.js.hbs',
+        export: 'export.js.hbs',
+    },
+    module: {
+        index: 'index.js.hbs',
+    },
+    reducer: {
+        index: 'index.js.hbs',
     },
     ...customTemplateNames,
 };

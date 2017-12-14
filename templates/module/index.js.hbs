@@ -1,0 +1,35 @@
+import { createAction, createReducer } from 'redux-action'
+
+{{#each actionsNames}}
+export const {{ constantCase this }}_ACTION = '{{ constantCase this }}_ACTION';
+{{/each}}
+
+{{#each actionsNames}}
+const {{ camelCase this }}Action = createAction( {{ constantCase this }}_ACTION, () => { /* Use some logic */ } );
+{{/each}}
+
+export const actions = {
+{{#each actionsNames}}
+    {{ camelCase this }}: {{ camelCase this }}Action,
+{{/each}}
+};
+
+//All actions
+export const allActions = {
+    ...actions,
+    ...complexActions,
+};
+
+const initialState = {
+    // Initial State
+};
+
+const {{ camelCase name }}Reducer = createReducer(initialState, {
+{{#each actionsNames}}
+    [{{ constantCase this }}_ACTION]: (actionPayload, state) => {
+        return state;
+    },
+{{/each}}
+})
+
+export default {{ camelCase name }}Reducer;
