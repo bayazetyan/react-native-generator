@@ -670,10 +670,6 @@ babel-preset-es2015@^6.24.1:
     babel-plugin-transform-es2015-unicode-regex "^6.24.1"
     babel-plugin-transform-regenerator "^6.24.1"
 
-babel-preset-es2105@^0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-es2105/-/babel-preset-es2105-0.0.0.tgz#eee800389df2657ba496480c6ccba437ece74669"
-
 babel-preset-stage-0@^6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-preset-stage-0/-/babel-preset-stage-0-6.24.1.tgz#5642d15042f91384d7e5af8bc88b1db95b039e6a"

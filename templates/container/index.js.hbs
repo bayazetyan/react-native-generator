@@ -1,0 +1,24 @@
+import {{ properCase componentName }}Component from '{{componentRelativePath}}';
+import { bindActionCreators } from 'redux';
+{{#if wantModule}}
+import { connect } from 'react-redux';
+import { actions } from '{{containerModuleRelativePath}}/{{dashCase name}}-module';
+{{/if}}
+
+const mapStateToProps = (state) => ({
+    // myProp: state.myProp,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    actions: {
+        ...bindActionCreators(
+            actions,
+            dispatch
+        )
+    }
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)({{ properCase componentName }}Component);

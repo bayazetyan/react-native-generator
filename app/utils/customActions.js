@@ -1,21 +1,19 @@
 import fs from "fs";
-import config from "../config";
 
-const componentsDir = config.absPaths.componentsDir;
+export const modifyExports = (plop, dir) => (answers) => {
+    const { name, type } = answers;
+    const message = 'modify ' + dir + 'index.js';
+    const newComponent = `export ${capitalize(name)} from './${capitalize(name)}${type === 'container' ? 'Container' : '' }';`;
 
-export const modifyExports = (plop) => (answers) => {
-    const message = 'modify ' + componentsDir + 'index.js';
-    const newComponent = `export ${capitalize(answers.name)} from './${capitalize(answers.name)}';`;
-
-    fs.readFile(componentsDir + 'index.js', 'utf8', function (err,data) {
+    fs.readFile(dir + 'index.js', 'utf8', function (err,data) {
         const parseToArray = data.split('\n');
 
-        // Add new component export
+        // Add new export
         parseToArray.push(newComponent);
         // Sort rows
         parseToArray.sort((currentItem, prevItem) => currentItem.length - prevItem.length);
 
-        fs.writeFile(componentsDir + 'index.js', parseToArray.join('\n'), 'utf8', function (err) {
+        fs.writeFile(dir + 'index.js', parseToArray.join('\n'), 'utf8', function (err) {
             if (err) return console.log(err);
         });
     });

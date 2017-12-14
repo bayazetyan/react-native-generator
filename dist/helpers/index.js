@@ -24,7 +24,7 @@ var addHelpers = exports.addHelpers = function addHelpers(plop) {
         data.forEach(function (prop) {
             switch (prop) {
                 case 'shouldComponentUpdate':
-                    output += '\tshouldComponentUpdate (nextProps, nextState, nextContext) { \n\n \t}\n';
+                    output += '\n\tshouldComponentUpdate (nextProps, nextState, nextContext) { \n\n \t}\n';
                     break;
                 case 'componentWillMount':
                     output += '\n\tcomponentWillMount () { \n\n \t}\n';

@@ -32,19 +32,18 @@ export default class {{ properCase name }} extends {{extendedComponent}}{{#if fl
 
         this.state = {};
     }
-
 {{/checkValueInArray}}
 {{#checkValueInArray properties checkValue='propTypes' }}
+
     static propTypes = {
 
     };
-
 {{/checkValueInArray}}
 {{#checkValueInArray properties checkValue='defaultProps' }}
+
     static defaultProps = {
 
     };
-
 {{/checkValueInArray}}
 {{printLifeCycles properties }}
     render() {

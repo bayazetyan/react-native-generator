@@ -28,7 +28,9 @@ module.exports = function (plop) {
             name: 'name',
             message: 'What is name of the component?',
             default: 'Button',
-            validate: _verifyName.verifyName
+            validate: function validate(value) {
+                return (0, _verifyName.verifyName)(value, 'component');
+            }
         }, {
             type: 'confirm',
             name: 'flow',
@@ -55,11 +57,12 @@ module.exports = function (plop) {
         }],
         actions: function actions(data) {
             var componentsDir = _config2.default.absPaths.componentsDir;
+            data.type = 'component';
 
             var actions = [{
                 type: 'add',
                 abortOnFail: true,
-                templateFile: (0, _getTemplate2.default)('es6class', 'component'),
+                templateFile: (0, _getTemplate2.default)('index', 'component'),
                 path: componentsDir + '{{properCase name}}/{{properCase name}}.js'
             }, {
                 type: 'add',
@@ -70,7 +73,7 @@ module.exports = function (plop) {
 
             if (_config2.default.isFileExist(componentsDir + "index.js")) {
                 // Add component export to index.js in component root folder
-                actions.push((0, _customActions.modifyExports)(plop));
+                actions.push((0, _customActions.modifyExports)(plop, componentsDir));
             } else {
                 // Add container export to index.js in container root folder
                 actions.push({

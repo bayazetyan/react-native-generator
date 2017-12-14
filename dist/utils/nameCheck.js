@@ -1,5 +1,10 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.nameCheck = exports.getFilesNames = undefined;
+
 var _config = require("./../config");
 
 var _config2 = _interopRequireDefault(_config);
@@ -10,7 +15,7 @@ var _fs2 = _interopRequireDefault(_fs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var getFilesNames = function getFilesNames(dirs) {
+var getFilesNames = exports.getFilesNames = function getFilesNames(dirs) {
     var allFiles = [];
 
     dirs.forEach(function (dir) {
@@ -22,7 +27,8 @@ var getFilesNames = function getFilesNames(dirs) {
     return allFiles;
 };
 
-var nameCheckDir = function nameCheckDir(component, dirs) {
+var nameCheck = exports.nameCheck = function nameCheck(component, dirs) {
+
     var components = getFilesNames(dirs);
 
     var existDirs = components.slice(0, -1);
@@ -37,5 +43,3 @@ var nameCheckDir = function nameCheckDir(component, dirs) {
         return item.match(regExp);
     });
 };
-
-module.exports = nameCheckDir;

@@ -50,11 +50,11 @@ const functions = {
 const defaultPaths = {
     rootReducerPath: 'src/reducers/index.js',
     componentsDir: 'src/components',
-    containerDir: 'src/containers',
+    containersDir: 'src/containers',
     modulesDir: 'src/modules',
     testRootDir: './__test__',
-    rootFile: 'src/app',
-    appFile: 'src/app',
+    rootFile: 'src/index.js',
+    appFile: 'src/app.js',
     templatePath: '',
 };
 

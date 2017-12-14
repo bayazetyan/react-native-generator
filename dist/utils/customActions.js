@@ -1,38 +1,35 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.capitalize = exports.modifyExports = undefined;
 
-var _fs = require("fs");
+var _fs = require('fs');
 
 var _fs2 = _interopRequireDefault(_fs);
 
-var _config = require("../config");
-
-var _config2 = _interopRequireDefault(_config);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var componentsDir = _config2.default.absPaths.componentsDir;
-
-var modifyExports = exports.modifyExports = function modifyExports(plop) {
+var modifyExports = exports.modifyExports = function modifyExports(plop, dir) {
     return function (answers) {
-        var message = 'modify ' + componentsDir + 'index.js';
-        var newComponent = "export " + capitalize(answers.name) + " from './" + capitalize(answers.name) + "';";
+        var name = answers.name,
+            type = answers.type;
 
-        _fs2.default.readFile(componentsDir + 'index.js', 'utf8', function (err, data) {
+        var message = 'modify ' + dir + 'index.js';
+        var newComponent = 'export ' + capitalize(name) + ' from \'./' + capitalize(name) + (type === 'container' ? 'Container' : '') + '\';';
+
+        _fs2.default.readFile(dir + 'index.js', 'utf8', function (err, data) {
             var parseToArray = data.split('\n');
 
-            // Add new component export
+            // Add new export
             parseToArray.push(newComponent);
             // Sort rows
             parseToArray.sort(function (currentItem, prevItem) {
                 return currentItem.length - prevItem.length;
             });
 
-            _fs2.default.writeFile(componentsDir + 'index.js', parseToArray.join('\n'), 'utf8', function (err) {
+            _fs2.default.writeFile(dir + 'index.js', parseToArray.join('\n'), 'utf8', function (err) {
                 if (err) return console.log(err);
             });
         });
