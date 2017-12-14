@@ -29,6 +29,9 @@ var templatesPath = _extends({
     },
     reducer: {
         index: 'index.js.hbs'
+    },
+    store: {
+        index: 'index.js.hbs'
     }
 }, customTemplateNames);
 
