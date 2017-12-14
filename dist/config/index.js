@@ -65,6 +65,7 @@ var defaultPaths = {
     modulesDir: 'src/modules',
     testRootDir: './__test__',
     rootFile: 'src/index.js',
+    storePath: 'src/store',
     appFile: 'src/app.js',
     templatePath: ''
 };

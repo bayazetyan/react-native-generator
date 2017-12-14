@@ -22,6 +22,9 @@ const templatesPath = {
     reducer: {
         index: 'index.js.hbs',
     },
+    store: {
+        index: 'index.js.hbs',
+    },
     ...customTemplateNames,
 };
 
