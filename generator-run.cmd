@@ -1,1 +1,1 @@
-plop --plopfile ./node_modules/react-native-generator/dist/console/index.js
+plop --plopfile ./node_modules/rn-generator/dist/console/index.js
