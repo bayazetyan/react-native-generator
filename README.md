@@ -19,7 +19,7 @@ There are different type of generator to help create react and redux based appli
 Open package json and add generate command within the scripts option
 
     "scripts": {
-	    "generate:run": "generate",
+	    "generate:run": "generate"
 	}
 
 # Generators
